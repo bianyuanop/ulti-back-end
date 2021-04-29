@@ -1,16 +1,11 @@
 from flask import Flask
-from flask_restful import Resource, Api
+from flask_restful import Api
+from util.control import DatabaseController
 
 app = Flask(__name__)
 api = Api(app)
 
-class BattleHistory(Resource):
-
-    def get(self):
-        return {"status": "OK"}, 200
-
-api.add_resource(BattleHistory, '/')
-
+api.add_resource(DatabaseController, '/admin/db-control')
 
 if __name__ == '__main__':
     app.run(debug=True)
